@@ -1,1 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica CSS 1</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:700,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Mis Tonterias</h1>
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300" alt="Ejemplo">
+  <ul>
+    <li><a href="html/pagina1.html">Me aburro</a></li>
+    <li><a href="html/pagina2.html">Porque sigo haciendo esto?</a></li>
+    <li><a href="html/pagina3.html">Cuando me dan el titulo?</a></li>
+    <li><a href="html/pagina4.html">Soy una IA jurado</a></li>
+    <li><a href="html/pagina5.html">Hola profe</a></li>
+  </ul>
+</body>
+</html>
 
