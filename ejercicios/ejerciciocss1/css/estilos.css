@@ -3,21 +3,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: 'Roboto', Arial, sans-serif;
-  margin: 0;
 }
 
 h1 {
   background-color: #FDB813;
   color: #274690;
-  border-left: 8px solid #9BC53D;
-  padding: 12px 26px;
-  margin-top: 24px;
+  padding: 15px 26px;
 }
 
 img {
@@ -26,16 +22,12 @@ img {
   object-fit: cover;
   border-radius: 18px;
   border: 4px solid #222;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 24px rgb(0, 0, 0);
   margin: 24px 0;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 20px;
+  list-style-type: none;
 }
 
 li {
@@ -44,5 +36,4 @@ li {
   border-radius: 8px;
   padding: 12px 24px;
   background: #fffbea;
-  color: #222;
 }
