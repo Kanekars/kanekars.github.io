@@ -1,0 +1,139 @@
+/*
+    CSS para el examen
+
+    colores:
+
+    fondo: #333333;
+    fondo: cajas: #424242;
+    linea: lightgray;
+    boton: #007BFF;
+    boton seleccionado: #0056b3;
+*/
+
+body {
+    background-color: #333333;
+    width: 90%;          /* 2- ancho 90% */
+    margin: 0 auto;      /* 3- centrar */
+}
+
+.container {
+    text-align: center;
+}
+
+.youtuber, .footer, .header {
+    background-color: #424242;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    /* 6- sombra */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    margin: 10px auto;
+    padding: 20px;
+    text-align: center;    
+}
+.footer {
+    padding: 0px;
+    color: white;
+}
+
+.imageHome{
+    border: black 4px solid;
+    border-radius: 3%;
+    /* 7- tamanyo */
+    width: 500px;      /* o 100%, o el tamaño que quieras */
+    height: 500px;     /* altura fija para que object-fit funcione bien */
+    /* Se utiliza en imágenes y videos 
+       para asegurarse de que siempre llenen 
+       completamente el contenedor, manteniendo
+       su relación de aspecto*/
+    object-fit: cover; 
+}
+
+.youtuber .images {
+
+    /* 8- redondear la imagen*/
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;    
+    /* Se utiliza en imágenes y videos 
+    para asegurarse de que siempre llenen 
+    completamente el contenedor, manteniendo 
+    su relación de aspecto*/
+    object-fit: cover; 
+}
+
+.youtuber h2 {    
+    color: white;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.youtuber p {
+    color: white;
+    font-size: 1em;
+}
+
+#menu {
+    /* 9- quita los puntos */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+li {
+    /* 10- haz que los li no sean de tipo bloque */
+    display: inline-block;
+    /* 11- borde izquierdo rojo */
+    border-left: 4px red solid;
+    /* 12- separa el borde de la izquierda */
+    padding-left: 5px;
+}
+
+
+#menu a {
+    /* 13- enlaces blancos */
+    color: white;
+    /* 14- sin subrayado */
+    text-decoration: none;
+}
+
+
+#menu a:hover {
+    /* 15- cambia el color al subrayado*/
+    text-decoration: underline;
+}
+
+
+
+.button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    /* animacion en css, para cambiar el color del boton, no visto en clase 
+    pero yo te lo regalo ;) */
+    transition: background-color 0.3s ease;
+}
+.button:hover {
+    /* 16- cambia el color al boton*/
+    color: #007BFF;
+    background-color: #0056b3;
+}
+
+@media all and (max-width: 700px) {
+    .youtuber, .footer {
+        /* 17- cambia el color al BORDE*/
+        border-color: aquamarine;
+    }
+    .button {
+        /* 18- cambia el color al boton*/
+        background-color: red;        
+    }
+    .button:hover {
+        /* 19- cambia el color al boton*/
+        background-color: blueviolet;
+    }    
+}
