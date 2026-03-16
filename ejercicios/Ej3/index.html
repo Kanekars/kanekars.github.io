@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej3</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cifrado César</h1>
+        
+        <input type="text" id="texto" placeholder="Escribe tu mensaje...">
+        <input type="number" id="clave" value="3" min="1" max="25">
+        
+        <button class="cifrar" onclick="cifrar()">Cifrar</button>
+        <button class="descifrar" onclick="descifrar()">Descifrar</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function cifrarCesar(texto, desplazamiento, cifrar = true) {
+            let resultado = '';
+            const dir = cifrar ? 1 : -1;
+            
+            for (let char of texto) {
+                if (char >= 'A' && char <= 'Z') {
+                    resultado += String.fromCharCode(
+                        ((char.charCodeAt(0) - 65 + dir * desplazamiento) % 26 + 26) % 26 + 65
+                    );
+                } else if (char >= 'a' && char <= 'z') {
+                    resultado += String.fromCharCode(
+                        ((char.charCodeAt(0) - 97 + dir * desplazamiento) % 26 + 26) % 26 + 97
+                    );
+                } else {
+                    resultado += char;
+                }
+            }
+            return resultado;
+        }
+
+        function cifrar() {
+            const texto = document.getElementById('texto').value;
+            const clave = parseInt(document.getElementById('clave').value);
+            const resultado = cifrarCesar(texto, clave, true);
+            document.getElementById('resultado').textContent = `Cifrado: ${resultado}`;
+            console.log('Cifrado:', resultado);
+        }
+
+        function descifrar() {
+            const texto = document.getElementById('texto').value;
+            const clave = parseInt(document.getElementById('clave').value);
+            const resultado = cifrarCesar(texto, clave, false);
+            document.getElementById('resultado').textContent = `Descifrado: ${resultado}`;
+            console.log('Descifrado:', resultado);
+        }
+    </script>
+</body>
+</html>
