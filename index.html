@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Índice de prácticas de Lenguaje de Marcas del ciclo DAM.">
+    <title>Lenguaje de Marcas | DAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f5f4ed;
+            --ink: #172321;
+            --muted: #64716c;
+            --line: #d7dcd3;
+            --green: #c9f36a;
+            --coral: #ed7256;
+            --blue: #a9d8e6;
+            --white: #fffefa;
+            --mono: "DM Mono", monospace;
+            --display: "Space Grotesk", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+        body {
+            margin: 0;
+            background-color: var(--paper);
+            background-image: radial-gradient(#17232112 0.7px, transparent 0.7px);
+            background-size: 9px 9px;
+            color: var(--ink);
+            font-family: var(--display);
+        }
+
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 76px;
+            border-bottom: 1px solid var(--line);
+        }
+        .wordmark { font-weight: 700; letter-spacing: 0; text-decoration: none; }
+        .wordmark span { color: var(--coral); }
+        .course-tag, .eyebrow, .block-index, .practice-count {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+        .course-tag { color: var(--muted); }
+
+        .intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 230px;
+            align-items: end;
+            gap: 40px;
+            padding: 76px 0 54px;
+        }
+        .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+        .eyebrow::before { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); content: ""; }
+        h1 {
+            max-width: 760px;
+            margin: 20px 0 18px;
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 600;
+            line-height: 0.98;
+            letter-spacing: 0;
+        }
+        h1 em { color: #598044; font-style: normal; }
+        .intro-copy { max-width: 570px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.6; }
+        .stamp {
+            display: grid;
+            place-items: center;
+            width: 170px;
+            aspect-ratio: 1;
+            justify-self: end;
+            border: 1px solid var(--ink);
+            border-radius: 50%;
+            background: var(--green);
+            text-align: center;
+            transform: rotate(8deg);
+        }
+        .stamp strong { display: block; font-size: 48px; line-height: 1; }
+        .stamp span { display: block; margin-top: 8px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; }
+
+        .index-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 0;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+        .index-bar p { margin: 0; font-family: var(--mono); font-size: 12px; text-transform: uppercase; }
+        .index-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .index-links a {
+            padding: 9px 13px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 160ms ease, border-color 160ms ease;
+        }
+        .index-links a:hover, .index-links a:focus-visible { border-color: var(--ink); background: var(--green); }
+        a:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+        .blocks { padding: 30px 0 70px; }
+        .block {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            margin-top: 20px;
+            border: 1px solid var(--ink);
+            background: var(--white);
+            animation: arrive 520ms both;
+        }
+        .block:nth-child(2) { animation-delay: 80ms; }
+        .block:nth-child(3) { animation-delay: 160ms; }
+        .block:nth-child(4) { animation-delay: 240ms; }
+        .block-aside { padding: 25px; border-right: 1px solid var(--ink); }
+        .block-index { display: block; margin-bottom: 30px; color: var(--muted); }
+        .block-aside h2 { margin: 0; font-size: 30px; letter-spacing: 0; }
+        .block-aside p { margin: 9px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+        .block-html .block-aside { background: var(--green); }
+        .block-css .block-aside { background: var(--blue); }
+        .block-xml .block-aside { background: #f3b49f; }
+        .practice-list { margin: 0; padding: 0; list-style: none; }
+        .practice-list li + li { border-top: 1px solid var(--line); }
+        .practice-entry {
+            display: grid;
+            grid-template-columns: 46px minmax(0, 1fr);
+            align-items: center;
+            gap: 16px;
+            min-height: 76px;
+            padding: 14px 22px;
+        }
+        .practice-count { color: var(--muted); }
+        .practice-title { font-size: 16px; font-weight: 600; }
+        .practice-detail { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; font-weight: 400; }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 0 30px;
+            border-top: 1px solid var(--ink);
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        @keyframes arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+        @media (max-width: 680px) {
+            .shell { width: min(100% - 32px, 520px); }
+            .topbar { min-height: 64px; }
+            .intro { grid-template-columns: 1fr; gap: 25px; padding: 55px 0 38px; }
+            h1 { font-size: clamp(48px, 14vw, 72px); }
+            .stamp { width: 112px; justify-self: start; }
+            .stamp strong { font-size: 34px; }
+            .stamp span { font-size: 9px; }
+            .index-bar { align-items: flex-start; flex-direction: column; }
+            .index-links { gap: 7px; }
+            .index-links a { padding: 8px 11px; }
+            .block { grid-template-columns: 1fr; }
+            .block-aside { padding: 18px 20px; border-right: 0; border-bottom: 1px solid var(--ink); }
+            .block-index { margin-bottom: 12px; }
+            .block-aside h2 { font-size: 25px; }
+            .practice-entry { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 13px 15px; }
+            .practice-title { font-size: 15px; }
+            .footer { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="shell topbar">
+        <a class="wordmark" href="#inicio" aria-label="Inicio, Lenguaje de Marcas">LM<span>.</span></a>
+        <span class="course-tag">Cuaderno de prácticas · DAM</span>
+    </header>
+
+    <main id="inicio" class="shell">
+        <section class="intro" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow">Portfolio de aula / 01</p>
+                <h1 id="page-title">Lenguaje<br>de <em>Marcas.</em></h1>
+                <p class="intro-copy">Un recorrido por las prácticas de HTML, CSS y XML. Estructura, estilo y datos: los bloques que dan forma a la web.</p>
+            </div>
+            <div class="stamp" aria-label="Ciclo formativo de grado superior">
+                <div><strong>DAM</strong><span>Desarrollo de<br>aplicaciones</span></div>
+            </div>
+        </section>
+
+        <nav class="index-bar" aria-label="Índice de bloques">
+            <p>Índice <span aria-hidden="true">↘</span></p>
+            <div class="index-links">
+                <a href="#html">01 · HTML</a>
+                <a href="#css">02 · CSS</a>
+                <a href="#xml">03 · XML</a>
+            </div>
+        </nav>
+
+        <section class="blocks" aria-label="Bloques de prácticas">
+            <article class="block block-html" id="html">
+                <div class="block-aside">
+                    <span class="block-index">Bloque 01 / Estructura</span>
+                    <h2>HTML</h2>
+                    <p>El contenido y el significado de cada página.</p>
+                </div>
+                <ol class="practice-list">
+                    <li><div class="practice-entry"><span class="practice-count">01.1</span><span class="practice-title">Mi primera página web<span class="practice-detail">Estructura básica y etiquetas principales</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">01.2</span><span class="practice-title">Una página semántica<span class="practice-detail">Cabecera, navegación, contenido y pie</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">01.3</span><span class="practice-title">Formularios accesibles<span class="practice-detail">Campos, etiquetas y validación</span></span></div></li>
+                </ol>
+            </article>
+
+            <article class="block block-css" id="css">
+                <div class="block-aside">
+                    <span class="block-index">Bloque 02 / Presentación</span>
+                    <h2>CSS</h2>
+                    <p>Diseño visual, composición y adaptación a pantalla.</p>
+                </div>
+                <ol class="practice-list">
+                    <li><div class="practice-entry"><span class="practice-count">02.1</span><span class="practice-title">Selectores y cascada<span class="practice-detail">Reglas, herencia y especificidad</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">02.2</span><span class="practice-title">Maquetación con Flexbox y Grid<span class="practice-detail">Distribución y alineación de elementos</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">02.3</span><span class="practice-title">Diseño adaptable<span class="practice-detail">Media queries y enfoque mobile first</span></span></div></li>
+                </ol>
+            </article>
+
+            <article class="block block-xml" id="xml">
+                <div class="block-aside">
+                    <span class="block-index">Bloque 03 / Datos</span>
+                    <h2>XML</h2>
+                    <p>Datos estructurados, validados y transformados.</p>
+                </div>
+                <ol class="practice-list">
+                    <li><div class="practice-entry"><span class="practice-count">03.1</span><span class="practice-title">Documento XML bien formado<span class="practice-detail">Elementos, atributos y estructura jerárquica</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">03.2</span><span class="practice-title">Validación con DTD y XSD<span class="practice-detail">Definición de reglas y comprobación de datos</span></span></div></li>
+                    <li><div class="practice-entry"><span class="practice-count">03.3</span><span class="practice-title">Transformación con XSLT<span class="practice-detail">Presentación de datos XML en HTML</span></span></div></li>
+                </ol>
+            </article>
+        </section>
+    </main>
+
+    <footer class="shell footer">
+        <span>Lenguaje de Marcas</span>
+        <span>Desarrollo de Aplicaciones Multiplataforma</span>
+    </footer>
+</body>
+</html>
